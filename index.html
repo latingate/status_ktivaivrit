@@ -106,12 +106,20 @@
 
                     <div class="uptime-bar" id="uptimeBar"></div>
 
+                    <div class="uptime-bar" id="uptimeBar"></div>
+
                     <script>
                         const warnPercent = 42;   // value 1-100
                         const totalBars = 30;
 
-                        // mode: "single" | "range"
-                        const warnMode = "range";
+                        // display mode
+                        const warnMode = "single";   // "single" | "range"
+
+                        // class names (colors/styles)
+                        // classes are defined in styles.css, you can customize them or add new ones
+                        // currentlly there are ok, warm, bad, maint
+                        const okClass = "ok";
+                        const warnClass = "maint";
 
                         const warnIndex = Math.ceil((warnPercent / 100) * totalBars);
 
@@ -124,9 +132,9 @@
                                 (warnMode === "single" && i === warnIndex) ||
                                 (warnMode === "range" && i <= warnIndex)
                             ) {
-                                span.className = "warn";
+                                span.className = warnClass;
                             } else {
-                                span.className = "ok";
+                                span.className = okClass;
                             }
 
                             bar.appendChild(span);
