@@ -1,0 +1,178 @@
+:root {
+  --status-operational: #16a34a;
+  --status-degraded: #f59e0b;
+  --status-outage: #dc3545;
+  --status-maintenance: #0d6efd;
+  --surface: #ffffff;
+  --surface-soft: #f8f9fa;
+  --border-soft: #e9ecef;
+  --text-muted-soft: #6c757d;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background: linear-gradient(180deg, #f8fbff 0%, #f6f7fb 100%);
+  color: #212529;
+}
+
+.hero-card,
+.status-card,
+.incident-card,
+.metric-card {
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: 1rem;
+  box-shadow: 0 0.5rem 1.5rem rgba(17, 24, 39, 0.05);
+}
+
+.page-wrap {
+  max-width: 1100px;
+}
+
+.overall-indicator {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  display: inline-block;
+  background: var(--status-operational);
+  box-shadow: 0 0 0 0.35rem rgba(22, 163, 74, 0.15);
+}
+
+.status-pill {
+  font-size: 0.85rem;
+  font-weight: 600;
+  padding: 0.45rem 0.8rem;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45rem;
+  white-space: nowrap;
+}
+
+.status-pill::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.status-operational {
+  background: rgba(22, 163, 74, 0.12);
+  color: #0f7a35;
+}
+.status-operational::before { background: var(--status-operational); }
+
+.status-degraded {
+  background: rgba(245, 158, 11, 0.12);
+  color: #a16207;
+}
+.status-degraded::before { background: var(--status-degraded); }
+
+.status-outage {
+  background: rgba(220, 53, 69, 0.12);
+  color: #b02a37;
+}
+.status-outage::before { background: var(--status-outage); }
+
+.status-maintenance {
+  background: rgba(13, 110, 253, 0.12);
+  color: #0a58ca;
+}
+.status-maintenance::before { background: var(--status-maintenance); }
+
+.service-row + .service-row {
+  border-top: 1px solid var(--border-soft);
+}
+
+.service-name {
+  font-weight: 600;
+}
+
+.uptime-bar {
+  display: grid;
+  grid-template-columns: repeat(30, 1fr);
+  gap: 0.2rem;
+}
+
+.uptime-bar span {
+  height: 28px;
+  border-radius: 0.3rem;
+  background: #dfe3e8;
+}
+
+.uptime-bar span.ok { background: rgba(22, 163, 74, 0.8); }
+.uptime-bar span.warn { background: rgba(245, 158, 11, 0.85); }
+.uptime-bar span.bad { background: rgba(220, 53, 69, 0.85); }
+.uptime-bar span.maint { background: rgba(13, 110, 253, 0.8); }
+
+.timeline-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--status-operational);
+  flex-shrink: 0;
+  margin-top: 0.4rem;
+}
+
+.timeline-item + .timeline-item {
+  border-top: 1px dashed var(--border-soft);
+}
+
+.small-label {
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  font-size: 0.74rem;
+  color: var(--text-muted-soft);
+  font-weight: 700;
+}
+
+.metric-value {
+  font-size: 1.75rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.chart-placeholder {
+  height: 220px;
+  border-radius: 0.9rem;
+  background:
+    linear-gradient(180deg, rgba(13,110,253,0.08), rgba(13,110,253,0.01)),
+    repeating-linear-gradient(
+      to right,
+      transparent,
+      transparent 39px,
+      rgba(0,0,0,0.04) 40px
+    ),
+    repeating-linear-gradient(
+      to top,
+      transparent,
+      transparent 39px,
+      rgba(0,0,0,0.04) 40px
+    );
+  position: relative;
+  overflow: hidden;
+  border: 1px solid var(--border-soft);
+}
+
+.chart-line {
+  position: absolute;
+  inset: auto 0 30px 0;
+  height: 120px;
+}
+
+.chart-line svg {
+  width: 100%;
+  height: 100%;
+}
+
+.footer-note {
+  color: var(--text-muted-soft);
+  font-size: 0.95rem;
+}
+
+@media (max-width: 767.98px) {
+  .uptime-bar span {
+    height: 20px;
+  }
+}
